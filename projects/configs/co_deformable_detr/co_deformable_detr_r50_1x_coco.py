@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/datasets/coco_detection.py',
+    '../_base_/datasets/coco_detection_vindr.py',
     '../_base_/default_runtime.py'
 ]
 # model settings
@@ -46,7 +46,7 @@ model = dict(
     query_head=dict(
         type='CoDeformDETRHead',
         num_query=300,
-        num_classes=80,
+        num_classes=23,
         in_channels=2048,
         sync_cls_avg_factor=True,
         with_box_refine=True,
@@ -113,7 +113,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=80,
+            num_classes=23,
             bbox_coder=dict(
                 type='DeltaXYWHBBoxCoder',
                 target_means=[0., 0., 0., 0.],
@@ -125,7 +125,7 @@ model = dict(
             loss_bbox=dict(type='GIoULoss', loss_weight=10.0*num_dec_layer*lambda_2)))],
     bbox_head=[dict(
         type='CoATSSHead',
-        num_classes=80,
+        num_classes=23,
         in_channels=256,
         stacked_convs=1,
         feat_channels=256,
